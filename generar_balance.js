@@ -7,12 +7,14 @@ const xlsx = require('xlsx');
 // Define la ruta a la carpeta principal que quieres escanear.
 // path.join asegura que la ruta funcione en diferentes sistemas operativos.
 // __dirname es una variable global de Node.js que contiene la ruta del directorio donde se ejecuta el script actual.
-const parentFolderPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION DOCUMENTAL/test/7_al_13_de_Abril_de_2025';
+const parentFolderPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/Balances Automaticos/archivo balance automatico/21 al 27 de Abril de 2025';
 // const parentFolderPath = 'C:\Users\gg\Documents\Ingeaudit Info\HOMOLOGACION DOCUMENTAL\test'; /* Se ocupa esta ruta en windows */
 // const parentFolderPath = path.join(__dirname, '7_al_13_de_Abril_de_2025'); /* Se ocupa esta ruta en windows */
-
+const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+const filename = `reportes_balance_${timestamp}.xlsx`
 // Define el nombre y la ruta del archivo Excel de salida.
-const outputExcelPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION DOCUMENTAL/test/reportes_balance/reportes_balance.xlsx';
+const outputExcelPath = path.join('/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/Balances Automaticos/reportes_balance/', filename);
+// const outputExcelPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/test/reportes_balance/reportes_balance.xlsx';
 // const outputExcelPath = path.join(__dirname, 'reportes_balance.xlsx');
 // --- Fin Configuración ---
 
@@ -66,12 +68,17 @@ async function generarReporteExcel() {
                         fileCount = files.length; // La cantidad de archivos encontrados
 
                         console.log(`      -> Subcarpeta '${subFolderName}' encontrada con ${fileCount} archivos.`);
+                        // Asignar una fórmula a la celda C2
+                        // const formula = worksheet['D2'] = { f: 'C2*750' };
 
                         // 7. Agregar la información al array de datos para el Excel
                         dataForExcel.push({
-                            "Nombre": topLevelFolderName,
-                            "Fecha de Registro": subFolderName, // Usando el nombre de columna solicitado
-                            "Cantidad": fileCount
+                            // "Nombre": topLevelFolderName,
+                            // "Fecha de Registro": subFolderName, // Usando el nombre de columna solicitado
+                            "Nombre": subFolderName,
+                            "Fecha de Registro": topLevelFolderName, // Usando el nombre de columna solicitado
+                            "Cantidad": fileCount,
+                            // "monto": formula
                         });
 
                     } catch (fileReadError) {
