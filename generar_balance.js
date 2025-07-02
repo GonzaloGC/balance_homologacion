@@ -7,13 +7,13 @@ const xlsx = require('xlsx');
 // Define la ruta a la carpeta principal que quieres escanear.
 // path.join asegura que la ruta funcione en diferentes sistemas operativos.
 // __dirname es una variable global de Node.js que contiene la ruta del directorio donde se ejecuta el script actual.
-const parentFolderPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/Balances Automaticos/archivo balance automatico/21 al 27 de Abril de 2025';
+const parentFolderPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/2-Balances Automaticos/archivo balance automatico/23 al 29 de Junio de 2025';
 // const parentFolderPath = 'C:\Users\gg\Documents\Ingeaudit Info\HOMOLOGACION DOCUMENTAL\test'; /* Se ocupa esta ruta en windows */
 // const parentFolderPath = path.join(__dirname, '7_al_13_de_Abril_de_2025'); /* Se ocupa esta ruta en windows */
 const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 const filename = `reportes_balance_${timestamp}.xlsx`
 // Define el nombre y la ruta del archivo Excel de salida.
-const outputExcelPath = path.join('/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/Balances Automaticos/reportes_balance/', filename);
+const outputExcelPath = path.join('/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/2-Balances Automaticos/reportes_balance/', filename);
 // const outputExcelPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/test/reportes_balance/reportes_balance.xlsx';
 // const outputExcelPath = path.join(__dirname, 'reportes_balance.xlsx');
 // --- Fin Configuración ---
@@ -23,7 +23,7 @@ async function generarReporteExcel() {
     console.log(`Iniciando escaneo de la carpeta: ${parentFolderPath}`);
 
     const dataForExcel = []; // Array para almacenar los datos de cada fila del Excel
-    const headers = ["Nombre", "Fecha de Registro", "Cantidad", "monto"]; // Definir encabezados explícitamente
+    const headers = ["Nombre", "Fecha de Registro", "Cantidad", "Monto"]; // Definir encabezados explícitamente
 
     try {
         // 1. Leer el contenido de la carpeta principal
@@ -117,7 +117,7 @@ async function generarReporteExcel() {
         const worksheet = xlsx.utils.json_to_sheet(dataForExcel, { header: headers });
 
         // Añadir la hoja de cálculo al libro de trabajo con un nombre (ej. 'Reporte')
-        xlsx.utils.book_append_sheet(workbook, worksheet, 'Reporte');
+        xlsx.utils.book_append_sheet(workbook, worksheet, 'Balance');
 
         // Escribir el libro de trabajo a un archivo .xlsx
         xlsx.writeFile(workbook, outputExcelPath);
