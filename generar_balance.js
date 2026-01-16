@@ -7,7 +7,7 @@ const xlsx = require('xlsx');
 // Define la ruta a la carpeta principal que quieres escanear.
 // path.join asegura que la ruta funcione en diferentes sistemas operativos.
 // __dirname es una variable global de Node.js que contiene la ruta del directorio donde se ejecuta el script actual.
-const parentFolderPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/2-Balances Automaticos/archivo balance automatico/29 de diciembre al 04 enero de 2025';
+const parentFolderPath = '/mnt/c/Users/gg/Documents/Ingeaudit Info/HOMOLOGACION ADMINISTRATIVA/2-Balances Automaticos/archivo balance automatico/05 al 11 de enero de 2026';
 // const parentFolderPath = 'C:\Users\gg\Documents\Ingeaudit Info\HOMOLOGACION DOCUMENTAL\test'; /* Se ocupa esta ruta en windows */
 // const parentFolderPath = path.join(__dirname, '7_al_13_de_Abril_de_2025'); /* Se ocupa esta ruta en windows */
 const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
